@@ -39,6 +39,47 @@ cargo build --release
 
 4. Add the `target/release` directory to your `PATH` or create a symlink to the executable.
 
+### How to Create a Symlink
+
+You can create a symlink to the executable by running one of the following commands, depending on your operating system:
+
+#### Linux and macOS:
+
+```sh
+sudo ln -s $(pwd)/target/release/node-copilot /usr/local/bin/node-copilot
+```
+
+#### Windows (using Command Prompt with administrative privileges):
+
+```sh
+mklink %SystemRoot%\System32\node-copilot.exe %CD%\target\release\node-copilot.exe
+```
+
+### How to add directly to PATH
+
+Alternatively, you can add the target/release directory to your PATH:
+
+#### Linus / Macos
+
+For Linux and macOS, add the following line to your shell configuration file (e.g., ~/.bashrc, ~/.zshrc, or ~/.bash_profile):
+
+```sh
+export PATH="$PATH:/path/to/your/node-copilot/target/release"
+```
+
+Remember to replace /path/to/your/node-copilot with the actual path to your project directory.
+
+#### Windows
+
+For Windows, follow these steps:
+
+1. Open the Start menu, search for "Environment Variables" and click on "Edit the system environment variables".
+2. In the "System Properties" window, click on the "Environment Variables" button.
+3. In the "Environment Variables" window, under "System variables", find the "Path" variable, select it, and click on "Edit".
+4. In the "Edit environment variable" window, click on "New" and add the full path to the `target\release directory` (e.g., `C:\path\to\your\node-copilot\target\release`).
+
+After making these changes, restart your shell or terminal for the new `PATH` settings to take effect.
+
 ## Usage
 
 ```sh

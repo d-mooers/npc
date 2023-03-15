@@ -30,7 +30,6 @@ pub fn parse_args() -> (String, Option<String>) {
 
     let output_file = matches.value_of("output_file").unwrap().to_string();
     let include = matches.value_of("include").map(|s| s.to_string());
-
     (output_file, include)
 }
 
@@ -47,5 +46,5 @@ pub fn type_to_terminal(text: &str, delay: Duration) {
         term.write_str(&c.to_string()).unwrap();
         std::thread::sleep(delay);
     }
-    term.write_line("").unwrap();
+    term.write_line("\n").unwrap();
 }

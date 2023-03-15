@@ -11,8 +11,9 @@ pub fn read_files(pattern: &str) -> String {
                 let mut file_content = String::new();
                 if let Ok(mut file) = fs::File::open(&path) {
                     if let Ok(_) = file.read_to_string(&mut file_content) {
-                        content.push_str(&file_content);
-                        content.push_str("\n");
+                        content.push_str(format!("BEGIN FILE: {}\n", path.display()).as_str());
+                        content.push_str(format!("```\n{}\n```\n", file_content).as_str());
+                        content.push_str(format!("END FILE {}\n\n", path.display()).as_str());
                     }
                 }
             }

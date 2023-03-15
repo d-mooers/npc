@@ -31,7 +31,7 @@ async fn run_interactive_loop(output_file: &str, include_pattern: Option<&str>) 
         };
 
         if user_input.trim().eq_ignore_ascii_case("exit") {
-            type_to_terminal(&format!("Goodbye"), Duration::from_millis(50));
+            type_to_terminal(&format!("{}", style("Goodbye").green()), Duration::from_millis(50));
             break;
         }
 

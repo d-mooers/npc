@@ -56,6 +56,7 @@ pub fn build_prompt(base_prompt: &str, context: &str) -> Prompt {
 #[tokio::main]
 pub async fn gpt_request(prompt: &str, context: &str) -> Result<String, Error> {
     let api_key = env::var("GPT_API_KEY").expect("GPT_API_KEY must be set");    
+    let max_tokens = env::var("MAX_TOKENS").unwrap_or("100".to_string()).parse::<u32>().unwrap();
     let client = Client::builder()
         .timeout(Duration::from_secs(10))
         .build()?;
@@ -65,7 +66,7 @@ pub async fn gpt_request(prompt: &str, context: &str) -> Result<String, Error> {
     let data = json!({
         "model": MODEL,
         "messages": prompt_with_context,
-        "max_tokens": 100,
+        "max_tokens": max_tokens,
         "temperature": 0.5,
     });
 

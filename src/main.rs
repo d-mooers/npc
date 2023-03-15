@@ -2,6 +2,7 @@ mod cli;
 mod gpt;
 mod file_reader;
 
+use clap::Error;
 use cli::{parse_args, type_to_terminal, draw_ascii_text};
 use gpt::gpt_request;
 use file_reader::read_files;
@@ -43,7 +44,8 @@ async fn run_interactive_loop(output_file: &str, include_pattern: Option<&str>) 
         let styled_response = format!("{}\n{}\n\n", style("Response:").bold(), response);
         type_to_terminal(&styled_response, Duration::from_millis(50));
         
-        output.write_all(styled_response.as_bytes());
+        let success = output.write_all(styled_response.as_bytes());
+        assert!(success.is_ok());
     }
 }
 

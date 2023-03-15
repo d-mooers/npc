@@ -1,7 +1,7 @@
 use clap::{App, Arg};
-use figlet_rs::{FIGure, FIGfont};
-use std::{io::Write, time::Duration};
-use console::{Term, style};
+use figlet_rs::FIGfont;
+use std::time::Duration;
+use console::Term;
 
 pub fn parse_args() -> (String, Option<String>) {
     let matches = App::new("node-copilot")

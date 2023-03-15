@@ -1,6 +1,6 @@
 use glob::glob;
 use std::fs;
-use std::io::{self, Read};
+use std::io::Read;
 
 pub fn read_files(pattern: &str) -> String {
     let mut content = String::new();

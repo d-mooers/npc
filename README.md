@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="http://nodefinance.org" target="blank"><img src="https://storage.googleapis.com/node_protocol_images/nodefinance.png" width="200" alt="Node Finance Logo" /></a>
+</p>
+
 # 🚀 Node Copilot 🤖
 
 Node Copilot is a fun and interactive CLI tool that helps you get programming-related answers using the power of GPT-4 API! Just type your question, and let the magic happen! ✨💻🧠

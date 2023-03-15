@@ -7,7 +7,6 @@ use gpt::gpt_request;
 use file_reader::read_files;
 
 use console::{Term, style};
-use std::env;
 use std::fs::File;
 use std::io::Write;
 use std::time::Duration;

@@ -1,7 +1,7 @@
 use clap::{App, Arg};
 use figlet_rs::FIGfont;
 use std::time::Duration;
-use console::Term;
+use console::{Term, style};
 
 pub fn parse_args() -> (String, Option<String>) {
     let matches = App::new("node-copilot")
@@ -38,7 +38,7 @@ pub fn draw_ascii_text(text: &str) {
     let standard_font = FIGfont::standard().unwrap();
     let figure = standard_font.convert(text);
     assert!(figure.is_some());
-    type_to_terminal(figure.unwrap().to_string().as_str(), Duration::from_millis(2));
+    type_to_terminal(&format!("{}", style(figure.unwrap().to_string().as_str()).bold().bright().blue()), Duration::from_millis(2));
 }
 
 pub fn type_to_terminal(text: &str, delay: Duration) {

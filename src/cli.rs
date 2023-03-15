@@ -1,4 +1,7 @@
 use clap::{App, Arg};
+use figlet_rs::{FIGure, FIGfont};
+use std::{io::Write, time::Duration};
+use console::{Term, style};
 
 pub fn parse_args() -> (String, Option<String>) {
     let matches = App::new("node-copilot")
@@ -11,7 +14,8 @@ pub fn parse_args() -> (String, Option<String>) {
                 .long("out")
                 .value_name("OUTPUT_FILE")
                 .help("Sets the output file for storing the results")
-                .required(true)
+                .required(false)
+                .default_value("output.txt")
                 .takes_value(true),
         )
         .arg(
@@ -28,4 +32,20 @@ pub fn parse_args() -> (String, Option<String>) {
     let include = matches.value_of("include").map(|s| s.to_string());
 
     (output_file, include)
+}
+
+pub fn draw_ascii_text(text: &str) {
+    let standard_font = FIGfont::standard().unwrap();
+    let figure = standard_font.convert(text);
+    assert!(figure.is_some());
+    type_to_terminal(figure.unwrap().to_string().as_str(), Duration::from_millis(2));
+}
+
+pub fn type_to_terminal(text: &str, delay: Duration) {
+    let term = Term::stdout();
+    for c in text.chars() {
+        term.write_str(&c.to_string()).unwrap();
+        std::thread::sleep(delay);
+    }
+    term.write_line("").unwrap();
 }

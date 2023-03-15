@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://nodefinance.org" target="blank"><img src="https://storage.googleapis.com/node_protocol_images/nodefinance.png" width="200" alt="Node Finance Logo" /></a>
+  <a href="http://nodefinance.org" target="_blank"><img src="https://storage.googleapis.com/node_protocol_images/nodefinance.png" width="200" alt="Node Finance Logo" /></a>
 </p>
 
 # 🚀 Node Copilot 🤖

@@ -46,7 +46,7 @@ You can create a symlink to the executable by running one of the following comma
 #### Linux and macOS:
 
 ```sh
-sudo ln -s $(pwd)/target/release/node-copilot /usr/local/bin/node-copilot
+sudo ln -s $(pwd)/target/release/npc /usr/local/bin/npc
 ```
 
 #### Windows (using Command Prompt with administrative privileges):

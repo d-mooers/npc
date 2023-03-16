@@ -56,9 +56,9 @@ pub fn build_prompt(base_prompt: &str, context: &str) -> Prompt {
 #[tokio::main]
 pub async fn gpt_request(prompt: &str, context: &str) -> Result<String, Error> {
     let api_key = env::var("GPT_API_KEY").expect("GPT_API_KEY must be set");    
-    let max_tokens = env::var("MAX_TOKENS").unwrap_or("100".to_string()).parse::<u32>().unwrap();
+    let max_tokens = env::var("MAX_TOKENS").unwrap_or("100".to_string()).parse::<u32>().unwrap_or_default();
     let client = Client::builder()
-        .timeout(Duration::from_secs(10))
+        .timeout(Duration::from_secs(60))
         .build()?;
 
     let prompt_with_context = build_prompt(prompt, context);

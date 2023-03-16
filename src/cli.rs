@@ -3,6 +3,8 @@ use figlet_rs::FIGfont;
 use std::time::Duration;
 use console::{Term, style};
 
+
+
 pub fn parse_args() -> (String, Option<String>) {
     let matches = App::new("node-copilot")
         .version("0.1.0")
@@ -28,7 +30,7 @@ pub fn parse_args() -> (String, Option<String>) {
         )
         .get_matches();
 
-    let output_file = matches.value_of("output_file").unwrap().to_string();
+    let output_file = matches.value_of("output_file").unwrap_or_default().to_string();
     let include = matches.value_of("include").map(|s| s.to_string());
     (output_file, include)
 }
@@ -48,3 +50,4 @@ pub fn type_to_terminal(text: &str, delay: Duration) {
     }
     term.write_line("\n").unwrap();
 }
+

@@ -15,7 +15,7 @@ Node Copilot is a fun and interactive CLI tool that helps you get programming-re
 ## Prerequisites
 
 - Rust (latest stable version)
-- API key for GPT-4 (replace `your_gpt_api_key_here` in `src/gpt.rs`)
+- API key for GPT-4 (see `.env.example`)
 
 ## Setup
 
@@ -83,16 +83,16 @@ After making these changes, restart your shell or terminal for the new `PATH` se
 ## Usage
 
 ```sh
-node-copilot --out <output_file> [--include <regex for file paths>]
+npc --out <output_file> [--include "<regex for file paths>"]
 ```
 
 - `<output_file>`: The output file path where the responses will be saved.
-- `<regex for file paths>`: (Optional) A regex pattern to include specific files as context.
+- `<regex for file paths>`: (Optional) A regex pattern to include specific files as context. Note that for the time being the regex must be surrounded in quotes. This is a workaround that will be improved eventually.
 
 ## Example:
 
 ```sh
-node-copilot --out results.txt --include "src/*.rs"
+npc --out results.txt --include "src/*.rs"
 ```
 
 This will start an interactive experience where you can ask programming-related questions. The responses will be displayed on the screen and saved to the specified output file.

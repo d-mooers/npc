@@ -4,7 +4,9 @@
 
 # 🚀 Node Copilot 🤖
 
-Node Copilot is a fun and interactive CLI tool that helps you get programming-related answers using the power of GPT-4 API! Just type your question, and let the magic happen! ✨💻🧠
+Node Copilot is a fun and interactive CLI tool that helps you get programming-related answers using the power of LLMs! Just type your question, and let the magic happen! ✨💻🧠
+
+_this project is in early development - bugs WILL be encountered_
 
 ## Features
 
@@ -15,7 +17,7 @@ Node Copilot is a fun and interactive CLI tool that helps you get programming-re
 ## Prerequisites
 
 - Rust (latest stable version)
-- API key for GPT-4 (see `.env.example`)
+- API key for Open AI (see `.env.example`)
 
 ## Setup
 

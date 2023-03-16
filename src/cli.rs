@@ -1,9 +1,7 @@
 use clap::{App, Arg};
+use console::{style, Term};
 use figlet_rs::FIGfont;
 use std::time::Duration;
-use console::{Term, style};
-
-
 
 pub fn parse_args() -> (String, Option<String>) {
     let matches = App::new("node-copilot")
@@ -30,7 +28,10 @@ pub fn parse_args() -> (String, Option<String>) {
         )
         .get_matches();
 
-    let output_file = matches.value_of("output_file").unwrap_or_default().to_string();
+    let output_file = matches
+        .value_of("output_file")
+        .unwrap_or_default()
+        .to_string();
     let include = matches.value_of("include").map(|s| s.to_string());
     (output_file, include)
 }
@@ -39,7 +40,16 @@ pub fn draw_ascii_text(text: &str) {
     let standard_font = FIGfont::standard().unwrap();
     let figure = standard_font.convert(text);
     assert!(figure.is_some());
-    type_to_terminal(&format!("{}", style(figure.unwrap().to_string().as_str()).bold().bright().blue()), Duration::from_millis(2));
+    type_to_terminal(
+        &format!(
+            "{}",
+            style(figure.unwrap().to_string().as_str())
+                .bold()
+                .bright()
+                .blue()
+        ),
+        Duration::from_millis(2),
+    );
 }
 
 pub fn type_to_terminal(text: &str, delay: Duration) {
@@ -50,4 +60,3 @@ pub fn type_to_terminal(text: &str, delay: Duration) {
     }
     term.write_line("\n").unwrap();
 }
-

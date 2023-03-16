@@ -1,8 +1,7 @@
-use reqwest::{Client, Response, Error};
-use serde::{Serialize, Deserialize};
+use reqwest::{Client, Error, Response};
+use serde::{Deserialize, Serialize};
 use serde_json::json;
-use std::{time::Duration, env};
-
+use std::{env, time::Duration};
 
 const GPT_API_BASE: &str = "https://api.openai.com/v1/chat/completions";
 const MODEL: &str = "gpt-3.5-turbo";
@@ -55,11 +54,12 @@ pub fn build_prompt(base_prompt: &str, context: &str) -> Prompt {
 
 #[tokio::main]
 pub async fn gpt_request(prompt: &str, context: &str) -> Result<String, Error> {
-    let api_key = env::var("GPT_API_KEY").expect("GPT_API_KEY must be set");    
-    let max_tokens = env::var("MAX_TOKENS").unwrap_or("100".to_string()).parse::<u32>().unwrap_or_default();
-    let client = Client::builder()
-        .timeout(Duration::from_secs(60))
-        .build()?;
+    let api_key = env::var("GPT_API_KEY").expect("GPT_API_KEY must be set");
+    let max_tokens = env::var("MAX_TOKENS")
+        .unwrap_or("100".to_string())
+        .parse::<u32>()
+        .unwrap_or_default();
+    let client = Client::builder().timeout(Duration::from_secs(60)).build()?;
 
     let prompt_with_context = build_prompt(prompt, context);
 
@@ -79,7 +79,9 @@ pub async fn gpt_request(prompt: &str, context: &str) -> Result<String, Error> {
 
     let response_data = response.json::<serde_json::Value>().await?;
     let text = response_data.to_string();
-    let generated_text = response_data["choices"][0]["message"]["content"].as_str().unwrap_or(text.as_str());
+    let generated_text = response_data["choices"][0]["message"]["content"]
+        .as_str()
+        .unwrap_or(text.as_str());
 
     Ok(generated_text.trim().to_string())
 }
